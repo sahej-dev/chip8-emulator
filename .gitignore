@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+# Editor config
+.vscode
+
+# MacOS
+.DS_Store
+
+>>>>>>> aa4e959 (making emulator public)
 # Prerequisites
 *.d
 
@@ -30,3 +39,7 @@
 *.exe
 *.out
 *.app
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa4e959 (making emulator public)
