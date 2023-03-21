@@ -44,8 +44,9 @@ namespace drivers
         Display(const Display&) = delete;
         Display& operator=(const Display&) = delete;
 
-        void updateDisplay(const std::vector< std::vector<bool> >& screenBuffer)
+        void updateDisplay(chip8::Display* chip8Display)
         {
+            const std::vector< std::vector<bool> >& screenBuffer = chip8Display->screenBuffer();
             // updating pixels
             for (uint8_t i = 0; i < screenBuffer.size(); i++)
                 for (uint8_t j = 0; j < screenBuffer[i].size(); j++)

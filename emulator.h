@@ -74,7 +74,7 @@ namespace chip8
                 execute(instruction);
 
                 m_inputDriver->updateKeyStates(m_chip8Keypad);
-                m_displayDriver->updateDisplay(m_chip8Display->screenBuffer());
+                m_displayDriver->updateDisplay(m_chip8Display);
 
             }
         }
