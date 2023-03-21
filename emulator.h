@@ -156,28 +156,28 @@ namespace chip8
                     break;
 
                 case 0x4:
-                    m_chip8Cpu->writeRegister(0xF, (static_cast<uint16_t>(valX) + static_cast<uint16_t>(valY)) > 255);
                     m_chip8Cpu->writeRegister(regX, valX + valY);
+                    m_chip8Cpu->writeRegister(0xF, (static_cast<uint16_t>(valX) + static_cast<uint16_t>(valY)) > 255);
                     break;
 
                 case 0x5:
-                    m_chip8Cpu->writeRegister(0xF, valX > valY);
                     m_chip8Cpu->writeRegister(regX, valX - valY);
+                    m_chip8Cpu->writeRegister(0xF, valX > valY);
                     break;
 
                 case 0x6:
-                    m_chip8Cpu->writeRegister(0xF, valX & 1);
                     m_chip8Cpu->writeRegister(regX, valX >> 1);
+                    m_chip8Cpu->writeRegister(0xF, valX & 1);
                     break;
 
                 case 0x7:
-                    m_chip8Cpu->writeRegister(0xF, valY > valX);
                     m_chip8Cpu->writeRegister(regX, valY - valX);
+                    m_chip8Cpu->writeRegister(0xF, valY > valX);
                     break;
 
                 case 0xE:
-                    m_chip8Cpu->writeRegister(0xF, valX & (1 << 7));
                     m_chip8Cpu->writeRegister(regX, valX << 1);
+                    m_chip8Cpu->writeRegister(0xF, valX & (1 << 7));
                     break;
                 
                 default:
