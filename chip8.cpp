@@ -26,10 +26,13 @@ namespace chip8
 
         for (uint8_t i = 0; i < sprite.size(); i++)
         {
+            uint8_t drwY = y + i;
+            if (drwY >= m_height) break;
+
             for (uint8_t j = 0; j < spriteWidth; j++)
             {   
-                uint8_t drwX = (x + (spriteWidth - j - 1)) % m_width;
-                uint8_t drwY = (y + i) % m_height;
+                uint8_t drwX = x + (spriteWidth - j - 1);
+                if (drwX >= m_width) continue;
 
                 if ((sprite[i] & (1 << j)) && m_screen.at(drwY).at(drwX))
                 {
