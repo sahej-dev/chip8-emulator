@@ -177,7 +177,7 @@ namespace chip8
 
                 case 0xE:
                     m_chip8Cpu->writeRegister(regX, valX << 1);
-                    m_chip8Cpu->writeRegister(0xF, valX & (1 << 7));
+                    m_chip8Cpu->writeRegister(0xF, (valX & (1 << 7)) >> 7);
                     break;
                 
                 default:
