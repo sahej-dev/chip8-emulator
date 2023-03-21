@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <ios>
+#include <chrono>
 
 #include "chip8.h"
 #include "window.h"
@@ -37,11 +38,31 @@ namespace chip8
 
         void run()
         {
+            std::chrono::time_point<std::chrono::steady_clock> fpsTimer { std::chrono::steady_clock::now() };
+	        std::chrono::duration<int32_t, std::ratio<1, 60>> FPS {};
+
             uint16_t pc = m_chip8Memory->romStartAddress();
             m_chip8Cpu->writePC(pc);
 
             while (!m_inputDriver->shouldQuit())
             {
+                FPS = std::chrono::duration_cast<std::chrono::duration<int32_t, std::ratio<1, 60>>>(
+                    std::chrono::steady_clock::now() - fpsTimer
+                );
+
+                if (FPS.count() >= 1)
+                {
+                    fpsTimer = std::chrono::steady_clock::now();
+
+                    const uint8_t dt = m_chip8Cpu->delayTimer();
+                    if (dt > 0)
+                        m_chip8Cpu->setDelayTimer(dt - 1);
+
+                    const uint8_t st = m_chip8Cpu->soundTimer();
+                    if (st > 0)
+                        m_chip8Cpu->setSoundTimer(st - 1);
+                }
+
                 pc = m_chip8Cpu->readPC();
 
                 uint16_t instruction = m_chip8Memory->read(pc);
@@ -54,6 +75,7 @@ namespace chip8
 
                 m_inputDriver->updateKeyStates(m_chip8Keypad);
                 m_displayDriver->updateDisplay(m_chip8Display->screenBuffer());
+
             }
         }
         
