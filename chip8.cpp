@@ -17,7 +17,7 @@ namespace chip8
 
     bool Display::attachSprite(const std::vector<uint8_t>& sprite, uint8_t x, uint8_t y)
     {
-        constexpr static uint8_t spriteWidth = 8;
+        const static uint8_t spriteWidth = 8;
         bool anyErased = false;
 
         // start pos of sprites wrap around
@@ -26,21 +26,18 @@ namespace chip8
 
         for (uint8_t i = 0; i < sprite.size(); i++)
         {
-            if (y + i >= m_height) break;
-            
             for (uint8_t j = 0; j < spriteWidth; j++)
             {   
+                uint8_t drwX = (x + (spriteWidth - j - 1)) % m_width;
+                uint8_t drwY = (y + i) % m_height;
 
-                if (x + (spriteWidth - j - 1) >= m_width) continue;
-
-                if (sprite[i] & (1 << j))
+                if ((sprite[i] & (1 << j)) && m_screen.at(drwY).at(drwX))
                 {
-                    if (m_screen.at(y + i).at(x + (spriteWidth - j - 1)))
-                        anyErased = true;
-
-                    m_screen.at(y + i).at(x + (spriteWidth - j - 1)) =
-                        m_screen.at(y + i).at(x + (spriteWidth - j - 1)) ^ sprite[i] & (1 << j);
+                    anyErased = true;
                 }
+
+                m_screen.at(drwY).at(drwX) =
+                    m_screen.at(drwY).at(drwX) ^ ((sprite[i] & (1 << j)) >> j);
 
             }
         }

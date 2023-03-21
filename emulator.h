@@ -233,7 +233,7 @@ namespace chip8
                     m_chip8Cpu->readRegister((instruction & 0xF0) >> 4)
                 };
 
-                uint8_t n = instruction & 0x0F;
+                uint8_t n = instruction & 0xF;
 
                 std::vector<uint8_t> sprite;
                 for (uint16_t i = 0; i < n; i++)

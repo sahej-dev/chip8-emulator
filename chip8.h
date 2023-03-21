@@ -172,8 +172,6 @@ namespace chip8
 
         /**
          * attaches sprite in-memory.
-         * does not update the diplay pixels.
-         * see: updatePixels() for that.
          * @returns
          *  true if register F is to be set to 1, false if it is to be set to 0
         */
