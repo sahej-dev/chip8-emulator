@@ -13,7 +13,7 @@ DEPS = $(OBJS:.o=.d)
 # .PHONY: $(PROG)
 
 ${PROG}: ${OBJS}
-	${CXX} ${CXXFLAGS} $^ -o $@ ${LIBS}
+	${CXX} ${CXXFLAGS} $^ -o $@.o ${LIBS}
 
 -include $(DEPS)
 
