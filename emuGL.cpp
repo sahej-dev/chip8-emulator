@@ -62,10 +62,13 @@ namespace emuGL
             // if (m_sdlEvent != nullptr)
             // {
                 // std::cout << "not null\n";
-                foundKeyDownEvent = m_sdlEvent.key.type == SDL_KEYDOWN;
+                foundKeyDownEvent = isKeyboardEvent(&m_sdlEvent) && m_sdlEvent.key.type == SDL_KEYDOWN;
                 std::cout << foundKeyDownEvent << " is found key down event\n";
             // }
         }
+
+        // while (!SDL_PollEvent(&m_sdlEvent) || !(isKeyboardEvent(&m_sdlEvent) && m_sdlEvent.key.type == SDL_KEYDOWN));
+        
 
         if (m_currKeyInput) delete m_currKeyInput;
 
