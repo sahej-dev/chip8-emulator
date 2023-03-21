@@ -32,6 +32,7 @@ namespace chip8
             delete m_chip8Keypad;
 
             delete m_displayDriver;
+            delete m_inputDriver;
         }
 
         void run()
