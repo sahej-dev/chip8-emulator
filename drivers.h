@@ -142,7 +142,6 @@ namespace drivers
             return chip8Key;
         }
     };
-    // TODO: driver for keyboard
 }
 
 #endif /* A0C4FC1F_24CD_4743_8B9F_4ED095910F8D */
