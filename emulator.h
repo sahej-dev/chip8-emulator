@@ -1,5 +1,5 @@
-#ifndef D609D28E_75F9_49C4_BA68_3530C587F12C
-#define D609D28E_75F9_49C4_BA68_3530C587F12C
+#ifndef EMULATOR_H
+#define EMULATOR_H
 
 #include <iostream>
 #include <fstream>
@@ -333,4 +333,4 @@ namespace chip8
     };
 }
 
-#endif /* D609D28E_75F9_49C4_BA68_3530C587F12C */
+#endif /* EMULATOR_H */

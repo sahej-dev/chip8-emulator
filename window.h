@@ -1,5 +1,5 @@
-#ifndef CDA6FE8D_BF25_4BED_9185_BC39BBBD400D
-#define CDA6FE8D_BF25_4BED_9185_BC39BBBD400D
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include <string>
 
@@ -79,4 +79,5 @@ namespace emuGL
         void initializeSdlObjects();
     };
 }
-#endif /* CDA6FE8D_BF25_4BED_9185_BC39BBBD400D */
+
+#endif /* WINDOW_H */

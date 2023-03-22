@@ -1,5 +1,5 @@
-#ifndef EA0C7B7D_2685_4B65_9C19_0D51F9131704
-#define EA0C7B7D_2685_4B65_9C19_0D51F9131704
+#ifndef EMUGL_H
+#define EMUGL_H
 
 #include <string>
 #include <vector>
@@ -156,4 +156,4 @@ namespace emuGL
     };
 }
 
-#endif /* EA0C7B7D_2685_4B65_9C19_0D51F9131704 */
+#endif /* EMUGL_H */

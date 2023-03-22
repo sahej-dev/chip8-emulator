@@ -1,5 +1,5 @@
-#ifndef A579BB51_C676_4B55_B421_E2D33E5DA5AC
-#define A579BB51_C676_4B55_B421_E2D33E5DA5AC
+#ifndef CHIP8_H
+#define CHIP8_H
 
 #include <stdint.h>
 #include <math.h>
@@ -210,4 +210,4 @@ namespace chip8
     };
 }
 
-#endif /* A579BB51_C676_4B55_B421_E2D33E5DA5AC */
+#endif /* CHIP8_H */

@@ -1,5 +1,5 @@
-#ifndef A0C4FC1F_24CD_4743_8B9F_4ED095910F8D
-#define A0C4FC1F_24CD_4743_8B9F_4ED095910F8D
+#ifndef DRIVERS_H
+#define DRIVERS_H
 
 #include <vector>
 
@@ -52,9 +52,9 @@ namespace drivers
                 for (uint8_t j = 0; j < screenBuffer[i].size(); j++)
                 {
                     if (screenBuffer[i][j])
-                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(emuGL::Colors::white);
+                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(emuGL::Colors::limeGreen);
                     else
-                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(emuGL::Colors::black);
+                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(emuGL::Colors::pastelCream);
                 }
             
             m_window->update();
@@ -144,4 +144,4 @@ namespace drivers
     };
 }
 
-#endif /* A0C4FC1F_24CD_4743_8B9F_4ED095910F8D */
+#endif /* DRIVERS_H */
