@@ -6,6 +6,7 @@
 #include "emuGL.h"
 #include "window.h"
 #include "color.h"
+#include "theme.h"
 
 namespace drivers
 {
@@ -52,9 +53,9 @@ namespace drivers
                 for (uint8_t j = 0; j < screenBuffer[i].size(); j++)
                 {
                     if (screenBuffer[i][j])
-                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(emuGL::Colors::limeGreen);
+                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(theme::foregroundColor);
                     else
-                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(emuGL::Colors::pastelCream);
+                        m_pixels.at(i * screenBuffer[i].size() + j)->setFillColor(theme::backgroundColor);
                 }
             
             m_window->update();
