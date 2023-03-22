@@ -279,7 +279,7 @@ namespace chip8
                         break;
 
                     case 0x0A:
-                        m_chip8Cpu->writeRegister(reg, m_inputDriver->waitKeyPress());
+                        m_chip8Cpu->writeRegister(reg, m_inputDriver->waitKeyPress(m_chip8Keypad));
                         break;
 
                     case 0x15:

@@ -142,7 +142,7 @@ namespace emuGL
         }
 
     private:
-        SDL_Event m_sdlEvent;
+        // SDL_Event m_sdlEvent;
         KeyInput* m_currKeyInput {};
 
         bool isKeyboardEvent(const SDL_Event* event)
@@ -150,8 +150,8 @@ namespace emuGL
             return SDL_KEYDOWN == event->type || event->type == SDL_KEYUP;
         }
 
-        KeyScanCode scanCodeFromSdlEvent();
-        KeyInput* keyInputFromSdlEvent(const SDL_Event* sdlEvent);
+        KeyScanCode scanCodeFromSdlEvent(const SDL_Event& sdlEvent);
+        KeyInput* keyInputFromSdlEvent(const SDL_Event& sdlEvent);
         
     };
 }

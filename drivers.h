@@ -71,7 +71,7 @@ namespace drivers
         ~Input() { delete m_inputHandler; }
 
         bool shouldQuit() { return m_inputHandler->quitIntent(); }
-        uint8_t waitKeyPress()
+        uint8_t waitKeyPress(chip8::Keypad* chip8Keypad)
         {
             int chip8Key = 16; // 16 if no (or invalid) key pressed
 
@@ -80,6 +80,9 @@ namespace drivers
                 emuGL::KeyInput key = *(m_inputHandler->waitForKeyPress());
 
                 chip8Key = chip8KeyFromKeyScanCode(key.keyCode);
+
+                if (chip8Key != 16 && chip8Keypad->isPressed(chip8Key))
+                    chip8Key = 16;
             }
 
             return static_cast<uint8_t>(chip8Key);

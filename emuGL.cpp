@@ -33,19 +33,20 @@ namespace emuGL
 
     const KeyInput* InputHandler::nextKeyInput()
     {
+        SDL_Event sdlEvent;
         bool haveAnEvent {};
         do
         {
-            haveAnEvent = SDL_PollEvent(&m_sdlEvent);
+            haveAnEvent = SDL_PollEvent(&sdlEvent);
         }
-        while (haveAnEvent && !isKeyboardEvent(&m_sdlEvent));
+        while (haveAnEvent && !isKeyboardEvent(&sdlEvent));
         
         if (m_currKeyInput) delete m_currKeyInput;
 
         if (haveAnEvent)
-            m_currKeyInput = keyInputFromSdlEvent(&m_sdlEvent);
+            m_currKeyInput = keyInputFromSdlEvent(sdlEvent);
         else
-            m_currKeyInput = {};
+            m_currKeyInput = nullptr;
 
         return m_currKeyInput;
     }
@@ -53,35 +54,49 @@ namespace emuGL
     const KeyInput* InputHandler::waitForKeyPress()
     {
         bool foundKeyDownEvent = false;
+        SDL_Event pressedEvent;
+        SDL_Event upEvent;
+        // while (!foundKeyDownEvent)
+        // {
+        //     if (!SDL_WaitEvent(&m_sdlEvent))
+        //         throw std::runtime_error(SDL_GetError());
 
-        while (!foundKeyDownEvent)
-        {
-            if (!SDL_WaitEvent(&m_sdlEvent))
-                throw std::runtime_error(SDL_GetError());
+        //     // if (m_sdlEvent != nullptr)
+        //     // {
+        //         // std::cout << "not null\n";
+        //         foundKeyDownEvent = isKeyboardEvent(&m_sdlEvent) && m_sdlEvent.key.type == SDL_KEYDOWN;
+        //         std::cout << foundKeyDownEvent << " is found key down event\n";
+        //     // }
+        // }
 
-            // if (m_sdlEvent != nullptr)
-            // {
-                // std::cout << "not null\n";
-                foundKeyDownEvent = isKeyboardEvent(&m_sdlEvent) && m_sdlEvent.key.type == SDL_KEYDOWN;
-                std::cout << foundKeyDownEvent << " is found key down event\n";
-            // }
-        }
+        while (
+            !SDL_PollEvent(&pressedEvent) || 
+            !(isKeyboardEvent(&pressedEvent) && pressedEvent.key.type == SDL_KEYDOWN)
+        );
 
-        // while (!SDL_PollEvent(&m_sdlEvent) || !(isKeyboardEvent(&m_sdlEvent) && m_sdlEvent.key.type == SDL_KEYDOWN));
+        KeyInput* pressedKeyInput = keyInputFromSdlEvent(pressedEvent);
+
+        while (
+            !SDL_PollEvent(&upEvent) || 
+            !(
+                isKeyboardEvent(&upEvent) && upEvent.key.type == SDL_KEYUP &&
+                keyInputFromSdlEvent(upEvent)->keyCode == pressedKeyInput->keyCode
+            )
+        );
         
 
         if (m_currKeyInput) delete m_currKeyInput;
 
-        m_currKeyInput = keyInputFromSdlEvent(&m_sdlEvent);
+        m_currKeyInput = keyInputFromSdlEvent(upEvent);
         return m_currKeyInput;
     }
 
-    KeyScanCode InputHandler::scanCodeFromSdlEvent()
+    KeyScanCode InputHandler::scanCodeFromSdlEvent(const SDL_Event& sdlEvent)
     {
         // if (!m_sdlEvent) throw std::runtime_error("ERROR: Requested scan code from null event!");
-        if (!isKeyboardEvent(&m_sdlEvent)) throw std::runtime_error("ERROR: Requested scan code for non keyboard event!");
+        if (!isKeyboardEvent(&sdlEvent)) throw std::runtime_error("ERROR: Requested scan code for non keyboard event!");
 
-        switch (m_sdlEvent.key.keysym.scancode)
+        switch (sdlEvent.key.keysym.scancode)
         {
             case SDL_SCANCODE_1: return KeyScanCode::k1;
             case SDL_SCANCODE_2: return KeyScanCode::k2;
@@ -124,17 +139,17 @@ namespace emuGL
             case SDL_SCANCODE_KP_ENTER: return KeyScanCode::kENTER;
 
         default:
-            std::cout << m_sdlEvent.key.keysym.sym << std::endl;
+            std::cout << sdlEvent.key.keysym.sym << std::endl;
             throw std::runtime_error("ERROR: Unimplemented key event occurred.");
             break;
         }
     }
 
-    KeyInput* InputHandler::keyInputFromSdlEvent(const SDL_Event* sdlEvent)
+    KeyInput* InputHandler::keyInputFromSdlEvent(const SDL_Event& sdlEvent)
     {
         return new KeyInput{
-            m_sdlEvent.key.type == SDL_KEYDOWN ? KeyEvent::Pressed : KeyEvent::Released,
-            scanCodeFromSdlEvent()
+            sdlEvent.key.type == SDL_KEYDOWN ? KeyEvent::Pressed : KeyEvent::Released,
+            scanCodeFromSdlEvent(sdlEvent)
         }; 
     }
 }
