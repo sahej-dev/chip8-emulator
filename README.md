@@ -2,7 +2,7 @@
 
 | ![picture 1](images/991c0c560b8d3ad78d7c703d93a67e877d93cee8e359045b7004afa529daccdf.png) | ![picture 2](images/65ed94de6b5907451d165f3548967b331809de17b99bf1c1530b4165bcaa6504.png) | ![picture 4](images/47cca49adbe4a3547f483e7197175e60b06d51354de04605fe91d57b76fa7c4e.png) |
 | :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
-|                                          IBM ROM                                          |                                      Space Invadors                                       |                                   Timendus' OpCode Test                                   |
+|                                          IBM ROM                                          |                                      Space Invaders                                       |                                   Timendus' OpCode Test                                   |
 
 An emulator for the simplest chip out there, CHIP-8.
 
@@ -26,7 +26,7 @@ If there is no binary file for your platform then you would have to yourself [bu
 - Run `./<downloaded-file-name>.o` to start the emulator
   - Again, for example. if you downloaded the `macos_m1.o` file then run `./macos_m1.o`
 
-These binaries have the space invadors rom loading using the default settings. If you want to customize the emulator's screen size, or colors then you would need to build from source (see [customization](#customizations) below).
+These binaries have the space Invaders rom loading using the default settings. If you want to customize the emulator's screen size, or colors then you would need to build from source (see [customization](#customizations) below).
 
 ### Bulding from Source
 
