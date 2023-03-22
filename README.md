@@ -34,7 +34,7 @@ These binaries have the space Invaders rom loading using the default settings. I
 
 #### Pre-requisites
 
-Following dependencies are required for following with the steps ahead:
+Following dependencies are required before following with the steps ahead:
 
 - [Make](https://www.gnu.org/software/make/)
 - [SDL2](https://www.libsdl.org/)
@@ -48,7 +48,7 @@ Following dependencies are required for following with the steps ahead:
 
 ## Customizations
 
-All customization can be done before building by making the changes explained below.
+All customization must be done before building by making the changes as explained below. You will need to build from source if you want to customize the defaults.
 
 ### Colors
 
