@@ -10,7 +10,7 @@
 # Compiled Object files
 *.slo
 *.lo
-./*.o
+/*.o
 obj/*.o
 *.obj
 
