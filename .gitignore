@@ -1,19 +1,17 @@
-<<<<<<< HEAD
-=======
 # Editor config
 .vscode
 
 # MacOS
 .DS_Store
 
->>>>>>> aa4e959 (making emulator public)
 # Prerequisites
 *.d
 
 # Compiled Object files
 *.slo
 *.lo
-*.o
+./*.o
+obj/*.o
 *.obj
 
 # Precompiled Headers
