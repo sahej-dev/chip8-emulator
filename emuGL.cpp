@@ -53,21 +53,8 @@ namespace emuGL
 
     const KeyInput* InputHandler::waitForKeyPress()
     {
-        bool foundKeyDownEvent = false;
         SDL_Event pressedEvent;
         SDL_Event upEvent;
-        // while (!foundKeyDownEvent)
-        // {
-        //     if (!SDL_WaitEvent(&m_sdlEvent))
-        //         throw std::runtime_error(SDL_GetError());
-
-        //     // if (m_sdlEvent != nullptr)
-        //     // {
-        //         // std::cout << "not null\n";
-        //         foundKeyDownEvent = isKeyboardEvent(&m_sdlEvent) && m_sdlEvent.key.type == SDL_KEYDOWN;
-        //         std::cout << foundKeyDownEvent << " is found key down event\n";
-        //     // }
-        // }
 
         while (
             !SDL_PollEvent(&pressedEvent) || 
@@ -93,7 +80,6 @@ namespace emuGL
 
     KeyScanCode InputHandler::scanCodeFromSdlEvent(const SDL_Event& sdlEvent)
     {
-        // if (!m_sdlEvent) throw std::runtime_error("ERROR: Requested scan code from null event!");
         if (!isKeyboardEvent(&sdlEvent)) throw std::runtime_error("ERROR: Requested scan code for non keyboard event!");
 
         switch (sdlEvent.key.keysym.scancode)
