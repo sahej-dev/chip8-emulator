@@ -89,7 +89,7 @@ const unsigned int SCALE_FACTOR = 15;
 
 ```
 
-Larger values of scale factor will result in a bigger window. The minimmum acceptable value for `SCALE_FACTOR` is 1. Setting in 0 would probably lead to bad things happening 🙂.
+Larger values of scale factor will result in a bigger window. The minimum acceptable value for `SCALE_FACTOR` is 1. Setting in 0 would probably lead to bad things happening 🙂.
 
 ## Acknowledgements
 
